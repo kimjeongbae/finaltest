@@ -2,6 +2,7 @@
 <div layout:fragment="content" class="container my-3">
     <h4>회원가입</h4>
     <form th:action="@{/user/signup}" th:object="${userForm}" method="post">
+        <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         사용자ID
         <input type="text" name="username">
         <br>

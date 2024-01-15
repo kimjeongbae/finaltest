@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,12 +24,12 @@ public class ArticleController {
 
 
     @GetMapping("/list")
-    public String list(Model model) {
-        List<Article> articleList = this.articleService.getList();
-
+    public String list(Model model, @RequestParam(value = "keyword", defaultValue = "") String keyword) {
+        List<Article> articleList = this.articleService.getList(keyword);
         model.addAttribute("articleList", articleList);
         return "article_list";
     }
+
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String create(ArticleForm articleForm) {

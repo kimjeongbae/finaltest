@@ -14,6 +14,13 @@
         </tr>
         </tbody>
         <a th:href="@{/article/create}">등록</a>
+        <div class="input-group">
+            <input type="text" th:value="${keyword}">
+            <button type="button" >찾기</button>
+        </div>
+        <form th:action="@{/article/list}" method="get" id="searchForm">
+            <input type="hidden" name="keyword" th:value="${keyword}">
+        </form>
     </table>
 </div>
 </html>
